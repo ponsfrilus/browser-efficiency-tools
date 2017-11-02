@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>EPFL Dojo - Browser tools</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Comment améliorer son travail quotidien avec des extensions du navigateur</h2>
+          <h3>Open Search / User Scripts</h3>
+          <aside class="notes">
+            Je présenterais brièvement comment créer le fichier xml pour OpenSearch, puis
+            quelques "search plugins" pour l'EPFL. Ensuite présentation des UserScripts
+            (GreaseMonkey, ViolentMonkey ou TaperMonkey), leurs intérêts, utilisations et
+            exemples "epfliens".
+          </aside>
+        </section>
+
+        <section>
+          <section><h2>Partie 1 — Open Search</h2></section>
+          <section data-background="https://media.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif?fingerprint=3640f60959fb874649476471499200cf">
+            Search, search, search...
+          </section>
+          <section>OpenSearch is a collection of simple formats for the sharing of search results.</section>
+          <section data-background="https://media.giphy.com/media/qHI7pSvfj1088/giphy.gif?fingerprint=3640f60959fb88636853734c4578d0ee">
+            Cela permet de préciser votre recherche efficacement...
+          </section>
+          <section>
+            <p>Et d'éviter le passage "Google"...</p>
+            <form action="http://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+              <input autocomplete="on" class="form-controls search" name="q" placeholder="nicolas borboen epfl" required="required" type="text">
+              <button class="button" type="submit">Search</button>
+            </form>
+          </section>
+          <section data-background="https://media.giphy.com/media/skmziDEEjiin6/giphy.gif">
+            On sait ou on cherche, on gagne du temps !
+          </section>
+          <section data-background="https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif">
+            <p>Comment ça marche ?</p>
+          </section>
+          <section>
+            <img src="https://blog.mozilla.org/ux/files/2014/11/title.jpg" />
+          </section>
+          <section>
+            <pre>
+              <code class="hljs" data-trim>
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Web Search</ShortName>
+  <Description>Use Example.com to search the Web.</Description>
+  <Tags>example web</Tags>
+  <Contact>admin@example.com</Contact>
+  <Url type="application/rss+xml"
+       template="http://example.com/?q={searchTerms}&amp;pw={startPage?}&amp;format=rss"></Url>
+</OpenSearchDescription>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre><code>
+  <link title="Amazon Search Suggestions"
+    rel="search"
+    type="application/opensearchdescription+xml"
+    href="//[...]/AmazonSearchSuggestionsOSD.Firefox.xml" />
+            </code></pre>
+          </section>
+          <section>
+            <h2>Quelques trucs</h2>
+            <p>Utiliser <kbd>ctrl</kbd> + <kbd>k</kbd></p>
+            <p>Définir des mots-clés pour les `search engines`</p>
+            <p><a href="http://mycroftproject.com/">Mycroft Project</a> pour l'hébergement</p>
+            <p><a href="http://sti.epfl.ch/page-141082-fr.html">Sur le site de la STI</a> pour les plugins liés à l'EPFL</p>
+          </section>
+          <section data-background="https://media.giphy.com/media/SDxzM5LAVq5Tq/giphy.gif">
+            <h2>Demo</h2>
+          </section>
+        </section>
+
+        <section>
+          <section><h2>Partie 2 — User Scripts</h2></section>
+          <section data-background="https://media.giphy.com/media/ojoNmgEbaQGUE/giphy.gif">
+            A userscript (or user script) is a program, usually written in JavaScript, for modifying web pages to <b>augment browsing</b>.
+          </section>
+          <section data-background="https://media.giphy.com/media/Tq6avM6uI7AK4/giphy.gif">
+            Permet de modifier n'importe quelle page...
+          </section>
+          <section data-background="https://media.giphy.com/media/3o6vY2HluUlY9bDYKk/giphy.gif">
+            De la manière qu'on a envie...
+          </section>
+          <section data-background="https://media.giphy.com/media/l4Jz3a8jO92crUlWM/giphy.gif?fingerprint=3640f60959fb8323474642456f7d4771">
+            Et d'en relever le goût !
+          </section>
+          <section data-background="https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif">
+            <p>Comment ça marche ?</p>
+          </section>
+          <section data-background="https://media.giphy.com/media/6Jq38LK4V30oU/giphy.gif">
+            Installer un extension du navigateur permettant de gérer les scripts
+          </section>
+          <section data-background="https://media.giphy.com/media/l3V0AYbDjTVOO4zF6/giphy.gif">
+            <ul>
+              <li>GreaseMonkey (Firefox)</li>
+              <li>TaperMonkey (Chrome)</li>
+              <li>ViolentMonkey (Opera)</li>
+              <li><a href="https://en.wikipedia.org/wiki/List_of_augmented_browsing_software">etc...</a></li>
+            </ul>
+          </section>
+          <section data-background="https://media.giphy.com/media/G3lxvBMhGu53y/giphy.gif">
+            puis installer des scripts (<a href="https://openuserjs.org/">OpenUserJS</a>)
+          </section>
+          <section data-background="https://media.giphy.com/media/xUA7b8xA1hqGNVUFOg/giphy.gif?fingerprint=3640f60959fb83c42f6c446e49e9f342">
+            ou créer les siens !
+          </section>
+          <section data-background="https://media.giphy.com/media/48ZJrHtwrdCqk/giphy.gif?fingerprint=3640f60959fb843a7556713055e53900">
+          </section>
+          <section>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Userscript">Wikipedia/Userscript</a></li>
+              <li><a href="https://openuserjs.org/">OpenUserJS.org</a></li>
+              <li><a href="https://github.com/OpenUserJs/OpenUserJS.org/wiki/Userscript-beginners-HOWTO">Userscript beginners HOWTO</a></li>
+          </section>
+          <section data-background="https://media.giphy.com/media/jYh9UDh2OE7XW/giphy.gif">
+            <h2>Demo</h2>
+            <p>Page People EPFL (<a href="https://github.com/epfl-dojo/EPFL_People_UserScript">script</a>)</p>
+            <p>Page EPNET EPFL (<a href="https://github.com/ponsfrilus/EPFL_EPNET_UserScript">script</a>)</p>
+          </section>
+        </section>
+
+        <section>
+          <section data-background="https://media.giphy.com/media/lD76yTC5zxZPG/giphy.gif"></section>
+          <section data-background="https://media.giphy.com/media/3o6gaQc4a0hghj1T2w/giphy.gif"><h2>Wanna try ?</h2></section>
+        </section>
+
+        <section style="text-align: left;">
+         <h1>A propos</h1>
+         <p>Cette présentation a été faite par <a href="http://go.epfl.ch/nbo">Nicolas Borboën</a>
+           avec <a href="https://github.com/hakimel/reveal.js">reveal.js</a> dans le cadre
+           des <a href="https://github.com/epfl-doj">Dojos</a> à
+           l'<a href="//www.epfl.ch">EPFL</a> le 3.11.2017.
+         </p>
+          <p>
+          </p>
+          <blockquote cite="https://www.brainyquote.com/quotes/quotes/e/edsgerdijk204332.html">
+            &ldquo;The question of whether a computer can think is no more
+            interesting than the question of whether a submarine can swim.&rdquo; — Edsger Dijkstra
+          </blockquote>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
